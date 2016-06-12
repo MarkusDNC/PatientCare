@@ -9,8 +9,9 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using SourceAFIS.Simple; // import namespace SourceAFIS.Simple
+using Gtk;
 
-namespace Sample
+namespace PatientCare
 {
 
 
@@ -48,6 +49,7 @@ namespace Sample
 		static AfisEngine Afis;
 
 		// Take fingerprint image file and create Person object from the image
+
 		static MyPerson Enroll(byte [,] image, string name)
 		{
 			Console.WriteLine("Enrolling {0}...", name);
@@ -85,16 +87,6 @@ namespace Sample
 		{
 
 			// Initialize SourceAFIS
-			for(int i=0; i<100; i++){
-				Program.doctor_array [i] = "../empty.raw";
-				Program.patient_array [i] = "../empty.raw";
-				if (i > 50) {
-					Program.doctor_array[i] = "SourceAFIS-1.7.0/Sample/markus1.raw";
-				}
-				if (i > 80) {
-					Program.patient_array[i] = "../oskar.raw";
-				}
-			}
 			try{
 				ftdi_get_library_version ();
 			}
@@ -116,9 +108,11 @@ namespace Sample
 			}
 
 
-			writeImage ("../../markusNew.raw");
-
-
+			Application.Init ();
+			MainWindow win = new MainWindow ();
+			win.Show ();
+			Application.Run ();
+			//writeImage ("../../fingerprint1.raw");
 
 			// Initialize path to images
 			Afis = new AfisEngine();
@@ -190,11 +184,11 @@ namespace Sample
 			return bt;
 		}
 
-		static void writeImage(String filename){
+		public static void writeImage(String filename){
 
 			byte[] img = new byte[152*200];
 			captureImage (2, 127, 0, img);
-			using (FileStream fs = File.Create (filename)) {
+			using (FileStream fs = File.Create (filename + ".raw")) {
 				fs.Write (img, 0, img.Length);
 			}
 		}

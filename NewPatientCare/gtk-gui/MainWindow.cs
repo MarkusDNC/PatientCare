@@ -3,19 +3,221 @@
 
 public partial class MainWindow
 {
+	private global::Gtk.UIManager UIManager;
+	
+	private global::Gtk.Action FileAction;
+	
+	private global::Gtk.Action newAction;
+	
+	private global::Gtk.VBox vbox1;
+	
+	private global::Gtk.MenuBar menubar1;
+	
+	private global::Gtk.HBox hbox4;
+	
+	private global::Gtk.ComboBoxEntry listDoctors;
+	
+	private global::Gtk.ComboBoxEntry listPatients;
+	
+	private global::Gtk.HBox hbox5;
+	
+	private global::Gtk.Button scan;
+	
+	private global::Gtk.Label result;
+	
+	private global::Gtk.HBox hbox2;
+	
+	private global::Gtk.Button addDoctor;
+	
+	private global::Gtk.Button addPatient;
+	
+	private global::Gtk.HBox hbox3;
+	
+	private global::Gtk.Entry entryDoctor;
+	
+	private global::Gtk.Entry entryPatient;
+	
+	private global::Gtk.Statusbar statusbar1;
+	
+	private global::Gtk.Label labelDoctor;
+	
+	private global::Gtk.Label labelPatient;
+
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
 		// Widget MainWindow
+		this.UIManager = new global::Gtk.UIManager ();
+		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
+		this.FileAction = new global::Gtk.Action ("FileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);
+		this.FileAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("File");
+		w1.Add (this.FileAction, null);
+		this.newAction = new global::Gtk.Action ("newAction", global::Mono.Unix.Catalog.GetString ("_New Doctor"), null, "gtk-new");
+		this.newAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_New Doctor");
+		w1.Add (this.newAction, null);
+		this.UIManager.InsertActionGroup (w1, 0);
+		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		// Container child MainWindow.Gtk.Container+ContainerChild
+		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Name = "vbox1";
+		this.vbox1.Spacing = 6;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='newAction' action='newAction'/></menu></menubar></ui>");
+		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
+		this.menubar1.Name = "menubar1";
+		this.vbox1.Add (this.menubar1);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.menubar1]));
+		w2.Position = 0;
+		w2.Expand = false;
+		w2.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox4 = new global::Gtk.HBox ();
+		this.hbox4.Name = "hbox4";
+		this.hbox4.Spacing = 6;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.listDoctors = global::Gtk.ComboBoxEntry.NewText ();
+		this.listDoctors.Name = "listDoctors";
+		this.hbox4.Add (this.listDoctors);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.listDoctors]));
+		w3.Position = 0;
+		// Container child hbox4.Gtk.Box+BoxChild
+		this.listPatients = global::Gtk.ComboBoxEntry.NewText ();
+		this.listPatients.Name = "listPatients";
+		this.hbox4.Add (this.listPatients);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox4 [this.listPatients]));
+		w4.Position = 1;
+		this.vbox1.Add (this.hbox4);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox4]));
+		w5.Position = 1;
+		w5.Expand = false;
+		w5.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox5 = new global::Gtk.HBox ();
+		this.hbox5.Name = "hbox5";
+		this.hbox5.Spacing = 6;
+		// Container child hbox5.Gtk.Box+BoxChild
+		this.scan = new global::Gtk.Button ();
+		this.scan.CanFocus = true;
+		this.scan.Name = "scan";
+		this.scan.UseUnderline = true;
+		this.scan.Label = global::Mono.Unix.Catalog.GetString ("Verify");
+		this.hbox5.Add (this.scan);
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.scan]));
+		w6.Position = 0;
+		this.vbox1.Add (this.hbox5);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox5]));
+		w7.Position = 2;
+		w7.Expand = false;
+		w7.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.result = new global::Gtk.Label ();
+		this.result.HeightRequest = 60;
+		this.result.Name = "result";
+		this.result.LabelProp = global::Mono.Unix.Catalog.GetString ("Press Verify to scan");
+		this.vbox1.Add (this.result);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.result]));
+		w8.Position = 3;
+		w8.Expand = false;
+		w8.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox2 = new global::Gtk.HBox ();
+		this.hbox2.Name = "hbox2";
+		this.hbox2.Spacing = 6;
+		// Container child hbox2.Gtk.Box+BoxChild
+		this.addDoctor = new global::Gtk.Button ();
+		this.addDoctor.CanFocus = true;
+		this.addDoctor.Name = "addDoctor";
+		this.addDoctor.UseUnderline = true;
+		this.addDoctor.Label = global::Mono.Unix.Catalog.GetString ("Add Doctor");
+		this.hbox2.Add (this.addDoctor);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.addDoctor]));
+		w9.Position = 0;
+		// Container child hbox2.Gtk.Box+BoxChild
+		this.addPatient = new global::Gtk.Button ();
+		this.addPatient.CanFocus = true;
+		this.addPatient.Name = "addPatient";
+		this.addPatient.UseUnderline = true;
+		this.addPatient.Label = global::Mono.Unix.Catalog.GetString ("Add Patient");
+		this.hbox2.Add (this.addPatient);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.addPatient]));
+		w10.PackType = ((global::Gtk.PackType)(1));
+		w10.Position = 1;
+		this.vbox1.Add (this.hbox2);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox2]));
+		w11.Position = 5;
+		w11.Expand = false;
+		w11.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox3 = new global::Gtk.HBox ();
+		this.hbox3.Name = "hbox3";
+		this.hbox3.Spacing = 6;
+		// Container child hbox3.Gtk.Box+BoxChild
+		this.entryDoctor = new global::Gtk.Entry ();
+		this.entryDoctor.CanFocus = true;
+		this.entryDoctor.Name = "entryDoctor";
+		this.entryDoctor.Text = global::Mono.Unix.Catalog.GetString ("Enter doctor name");
+		this.entryDoctor.IsEditable = true;
+		this.entryDoctor.InvisibleChar = '•';
+		this.hbox3.Add (this.entryDoctor);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.entryDoctor]));
+		w12.Position = 0;
+		// Container child hbox3.Gtk.Box+BoxChild
+		this.entryPatient = new global::Gtk.Entry ();
+		this.entryPatient.CanFocus = true;
+		this.entryPatient.Name = "entryPatient";
+		this.entryPatient.Text = global::Mono.Unix.Catalog.GetString ("Enter patient name");
+		this.entryPatient.IsEditable = true;
+		this.entryPatient.InvisibleChar = '•';
+		this.hbox3.Add (this.entryPatient);
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.entryPatient]));
+		w13.Position = 1;
+		this.vbox1.Add (this.hbox3);
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox3]));
+		w14.Position = 6;
+		w14.Expand = false;
+		w14.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.statusbar1 = new global::Gtk.Statusbar ();
+		this.statusbar1.Name = "statusbar1";
+		this.statusbar1.Spacing = 6;
+		// Container child statusbar1.Gtk.Box+BoxChild
+		this.labelDoctor = new global::Gtk.Label ();
+		this.labelDoctor.Name = "labelDoctor";
+		this.labelDoctor.LabelProp = global::Mono.Unix.Catalog.GetString ("Doctor name");
+		this.statusbar1.Add (this.labelDoctor);
+		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.labelDoctor]));
+		w15.Position = 0;
+		w15.Expand = false;
+		w15.Fill = false;
+		// Container child statusbar1.Gtk.Box+BoxChild
+		this.labelPatient = new global::Gtk.Label ();
+		this.labelPatient.Name = "labelPatient";
+		this.labelPatient.LabelProp = global::Mono.Unix.Catalog.GetString ("Patient name");
+		this.statusbar1.Add (this.labelPatient);
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.labelPatient]));
+		w16.Position = 2;
+		w16.Expand = false;
+		w16.Fill = false;
+		this.vbox1.Add (this.statusbar1);
+		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
+		w17.PackType = ((global::Gtk.PackType)(1));
+		w17.Position = 9;
+		w17.Expand = false;
+		w17.Fill = false;
+		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 400;
-		this.DefaultHeight = 300;
+		this.DefaultWidth = 519;
+		this.DefaultHeight = 391;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.addDoctor.Clicked += new global::System.EventHandler (this.OnAddDoctorClicked);
+		this.addPatient.Clicked += new global::System.EventHandler (this.OnAddPatientClicked);
+		this.entryDoctor.Changed += new global::System.EventHandler (this.OnEntryDoctorChanged);
+		this.entryPatient.Changed += new global::System.EventHandler (this.OnEntryPatientChanged);
 	}
 }
