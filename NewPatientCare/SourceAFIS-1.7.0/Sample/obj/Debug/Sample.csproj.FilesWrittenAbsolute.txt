@@ -1,0 +1,4 @@
+/home/markus/Desktop/Patient_Care/SourceAFIS-1.7.0/Sample/obj/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttribute.cs
+/home/markus/Desktop/Patient_Care/SourceAFIS-1.7.0/Sample/obj/Debug/Sample.gtk-gui.gui.stetic
+/home/markus/Desktop/Patient_Care/SourceAFIS-1.7.0/Sample/bin/Debug/SourceAFIS.Mono.dll
+/home/markus/Desktop/Patient_Care/SourceAFIS-1.7.0/Sample/bin/Debug/PresentationCore.dll

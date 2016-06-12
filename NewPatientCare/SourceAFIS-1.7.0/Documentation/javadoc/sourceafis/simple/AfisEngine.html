@@ -1,0 +1,579 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+AfisEngine (SourceAFIS for Java)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="AfisEngine (SourceAFIS for Java)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../sourceafis/simple/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?sourceafis/simple/AfisEngine.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AfisEngine.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+sourceafis.simple</FONT>
+<BR>
+Class AfisEngine</H2>
+<PRE>
+<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
+  <IMG SRC="../../resources/inherit.gif" ALT="extended by "><B>sourceafis.simple.AfisEngine</B>
+</PRE>
+<HR>
+<DL>
+<DT><PRE>public class <B>AfisEngine</B><DT>extends <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></DL>
+</PRE>
+
+<P>
+Methods and settings of SourceAFIS fingerprint matching engine.
+ 
+ This class is an entry point to core SourceAFIS functionality. After setting
+ relevant properties (notably <A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>threshold</CODE></A>), application
+ can call one of the three main methods (<A HREF="../../sourceafis/simple/AfisEngine.html#extract(sourceafis.simple.Person)"><CODE>extract</CODE></A>,
+ <A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A>, <A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A>) to perform template
+ extraction and fingerprint matching.
+ <p>
+ AfisEngine objects are thread-safe, i.e. synchronized. AfisEngine is a
+ lightweight object, but application is encouraged to keep only one global
+ AfisEngine instance anyway. Every AfisEngine method utilizes multiple cores
+ automatically. Applications that wish to execute several methods of
+ AfisEngine in parallel should create multiple AfisEngine objects, perhaps one
+ per thread.
+<P>
+
+<P>
+<HR>
+
+<P>
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#AfisEngine()">AfisEngine</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create new SourceAFIS engine.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#extract(sourceafis.simple.Person)">extract</A></B>(<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;person)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extracts fingerprint template(s) to be used during matching (not
+ implemented in java).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#getDpi()">getDpi</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets DPI of images submitted for template extraction.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#getMinMatches()">getMinMatches</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets minimum number of fingerprints that must match in order for a whole
+ person to match.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#getThreshold()">getThreshold</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets similarity score threshold for making match/non-match decisions.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</A>&lt;<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)">identify</A></B>(<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;probe,
+         <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</A>&lt;<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&gt;&nbsp;candidates)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compares probe <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> to all candidate <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s and
+ returns the most similar candidates.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#setDpi(int)">setDpi</A></B>(int&nbsp;value)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets DPI of images submitted for template extraction.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#setMinMatches(int)">setMinMatches</A></B>(int&nbsp;value)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets minimum number of fingerprints that must match in order for a whole
+ person to match.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)">setThreshold</A></B>(float&nbsp;value)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets similarity score threshold for making match/non-match decisions.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)">verify</A></B>(<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;probe,
+       <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;candidate)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computes similarity score between two <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="AfisEngine()"><!-- --></A><H3>
+AfisEngine</H3>
+<PRE>
+public <B>AfisEngine</B>()</PRE>
+<DL>
+<DD>Create new SourceAFIS engine.
+<P>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getDpi()"><!-- --></A><H3>
+getDpi</H3>
+<PRE>
+public int <B>getDpi</B>()</PRE>
+<DL>
+<DD>Gets DPI of images submitted for template extraction.
+ 
+ See <A HREF="../../sourceafis/simple/AfisEngine.html#setDpi(int)"><CODE>setDpi</CODE></A> for explanation of DPI setting. This method
+ just returns current DPI setting.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>current setting of DPI assumed for all images<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#setDpi(int)"><CODE>setDpi</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#extract(sourceafis.simple.Person)"><CODE>extract</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDpi(int)"><!-- --></A><H3>
+setDpi</H3>
+<PRE>
+public void <B>setDpi</B>(int&nbsp;value)</PRE>
+<DL>
+<DD>Sets DPI of images submitted for template extraction.
+ 
+ Default is 500.
+ <p>
+ DPI of common optical fingerprint readers is 500. For other types of
+ readers as well as for high-resolution readers, you might need to change
+ this property to reflect capabilities of your reader. This value is used
+ only during template <A HREF="../../sourceafis/simple/AfisEngine.html#extract(sourceafis.simple.Person)"><CODE>extraction</CODE></A>. Matching is not
+ affected, because extraction process rescales all templates to 500dpi
+ internally.
+ <p>
+ Setting DPI causes extractor to adjust its parameters to the DPI. It
+ therefore helps with accuracy. Correct DPI also allows matching of
+ fingerprints coming from different readers. When matching children's
+ fingerprints, it is sometimes useful to fool the extractor with lower DPI
+ setting to deal with the tiny ridges on fingers of children.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>value</CODE> - new DPI assumed to apply to all processed fingerprint images<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#getDpi()"><CODE>getDpi</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#extract(sourceafis.simple.Person)"><CODE>extract</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getThreshold()"><!-- --></A><H3>
+getThreshold</H3>
+<PRE>
+public float <B>getThreshold</B>()</PRE>
+<DL>
+<DD>Gets similarity score threshold for making match/non-match decisions.
+ 
+ See <A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>setThreshold</CODE></A> for explanation of similarity
+ threshold. This method just returns current threshold value.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>current similarity threshold value<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>setThreshold</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setThreshold(float)"><!-- --></A><H3>
+setThreshold</H3>
+<PRE>
+public void <B>setThreshold</B>(float&nbsp;value)</PRE>
+<DL>
+<DD>Sets similarity score threshold for making match/non-match decisions.
+ 
+ Default value is rather arbitrarily set to 25.
+ <p>
+ Matching algorithm produces similarity score which is a measure of
+ similarity between two fingerprints. Applications however need clear
+ match/non-match decisions. Threshold is used to turn similarity score
+ into match/non-match decision. Similarity score at or above the threshold
+ is considered match. Lower score is considered non-match. This property
+ is used by <A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A> and <A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A> methods
+ to make match decisions.
+ <p>
+ Appropriate threshold level is application-specific. Application
+ developer must adjust this property to reflect differences in fingerprint
+ readers, population, and application requirements. Start with default
+ threshold. If there are too many false accepts (SourceAFIS reports match
+ for fingerprints from two different people), increase the threshold. If
+ there are too many false rejects (SourceAFIS reports non-match for two
+ fingerprints of the same person), decrease the threshold. Every
+ application eventually arrives at some reasonable balance between FAR
+ (false accept ratio) and FRR (false reject ratio).
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>value</CODE> - new value of the similarity threshold<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#getThreshold()"><CODE>getThreshold</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMinMatches()"><!-- --></A><H3>
+getMinMatches</H3>
+<PRE>
+public int <B>getMinMatches</B>()</PRE>
+<DL>
+<DD>Gets minimum number of fingerprints that must match in order for a whole
+ person to match.
+ 
+ See <A HREF="../../sourceafis/simple/AfisEngine.html#setMinMatches(int)"><CODE>setMinMatches</CODE></A> for explanation. This method
+ just returns current minimum number of matching fingerprints.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>current minimum number of matching fingerprints<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#setMinMatches(int)"><CODE>setMinMatches</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMinMatches(int)"><!-- --></A><H3>
+setMinMatches</H3>
+<PRE>
+public void <B>setMinMatches</B>(int&nbsp;value)</PRE>
+<DL>
+<DD>Sets minimum number of fingerprints that must match in order for a whole
+ person to match.
+ 
+ Default value is 1 (person matches if any of its fingerprints matches).
+ <p>
+ When there are multiple <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A>s per <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>,
+ SourceAFIS compares every probe <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A> to every candidate
+ <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A> and takes the best match, the one with highest
+ similarity score. This behavior improves FRR (false reject rate), because
+ low similarity scores caused by damaged fingerprints are ignored. This
+ happens when <code>MinMatches</code> is 1 (default).
+ <p>
+ When <code>MinMatches</code> is 2 or higher, SourceAFIS compares every probe
+ <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A> to every candidate <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A> and records
+ score for every comparison. It then sorts collected partial scores in
+ descending order and picks score that is on position specified by
+ <code>MinMatches</code> property, e.g. 2nd score if <code>MinMatches</code> is 2,
+ 3rd score if <code>MinMatches</code> is 3, etc. When combined with
+ <A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>threshold</CODE></A>, this property essentially specifies how
+ many partial scores must be above <A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>threshold</CODE></A> in
+ order for the whole <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> to match. As a special case, when
+ there are too few partial scores (less than value of <code>MinMatches</code>),
+ SourceAFIS picks the lowest score.
+ <p>
+ <code>MinMatches</code> is useful in some rare cases where there is
+ significant risk that some fingerprint might match randomly with high
+ score due to a broken template or due to some rarely occuring matcher
+ flaw. In these cases, <code>MinMatches</code> might improve FAR. This is
+ discouraged practice though. Application developers seeking ways to
+ improve FAR would do much better to increase <A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>threshold</CODE></A>. <A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>Threshold</CODE></A> can be safely raised to
+ levels where FAR is essentially zero as far as fingerprints are of good
+ quality.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>value</CODE> - new minimum number of matching fingerprints<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#getMinMatches()"><CODE>getMinMatches</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="extract(sourceafis.simple.Person)"><!-- --></A><H3>
+extract</H3>
+<PRE>
+public void <B>extract</B>(<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;person)</PRE>
+<DL>
+<DD>Extracts fingerprint template(s) to be used during matching (not
+ implemented in java).
+ 
+ <p>
+ The <code>extract</code> method takes <CODE>Fingerprint#image</CODE> from every
+ <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A> in <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> parameter and constructs
+ fingerprint template that it stores in <A HREF="../../sourceafis/simple/Fingerprint.html#getTemplate()"><CODE>template</CODE></A> property of the respective <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A>. This step must
+ be performed before the <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> is used in <A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A>
+ or <A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A> method, because matching is done on
+ fingerprint templates, not on fingerprint images.
+ <p>
+ Fingerprint image can be discarded after extraction, but it is
+ recommended to keep it in case the <A HREF="../../sourceafis/simple/Fingerprint.html#getTemplate()"><CODE>template</CODE></A> needs to be regenerated due to SourceAFIS upgrade or other
+ reason.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>person</CODE> - <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> object to use for template extraction<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#setDpi(int)"><CODE>setDpi</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="verify(sourceafis.simple.Person, sourceafis.simple.Person)"><!-- --></A><H3>
+verify</H3>
+<PRE>
+public float <B>verify</B>(<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;probe,
+                    <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;candidate)</PRE>
+<DL>
+<DD>Computes similarity score between two <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s.
+ 
+ The <code>verify</code> method compares two <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s,
+ <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A> by <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A>, and returns floating-point
+ similarity score that indicates degree of similarity between the two
+ <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s. If this score falls below <A HREF="../../sourceafis/simple/AfisEngine.html#threshold"><CODE>threshold</CODE></A>,
+ <code>verify</code> method returns zero.
+ <p>
+ <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s passed to this method must have valid
+ <A HREF="../../sourceafis/simple/Fingerprint.html#getTemplate()"><CODE>template</CODE></A> for every <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A>,
+ i.e. they must have passed through <A HREF="../../sourceafis/simple/AfisEngine.html#extract(sourceafis.simple.Person)"><CODE>extract</CODE></A> method.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>probe</CODE> - first of the two persons to compare<DD><CODE>candidate</CODE> - second of the two persons to compare
+<DT><B>Returns:</B><DD>similarity score indicating similarity between the two persons or
+         0 if there is no match<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>setThreshold</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#identify(sourceafis.simple.Person, java.lang.Iterable)"><CODE>identify</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="identify(sourceafis.simple.Person, java.lang.Iterable)"><!-- --></A><H3>
+identify</H3>
+<PRE>
+public <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</A>&lt;<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&gt; <B>identify</B>(<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&nbsp;probe,
+                                 <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</A>&lt;<A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple">Person</A>&gt;&nbsp;candidates)</PRE>
+<DL>
+<DD>Compares probe <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> to all candidate <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s and
+ returns the most similar candidates.
+ 
+ 
+ Calling <code>identify</code> is conceptually identical to calling
+ <A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A> in a loop except that <code>identify</code> is
+ significantly faster than loop of <A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A> calls. If there
+ is no candidate with score at or above <A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>threshold</CODE></A>,
+ <code>identify</code> returns empty collection.
+ <p>
+ Most applications need only the best match, which can be obtained by
+ calling
+ <A HREF="http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/collect/Iterables.html?is-external=true#getFirst(java.lang.Iterable, T)" title="class or interface in com.google.common.collect"><CODE>Iterables.getFirst</CODE></A> method from Guava library. Pass the returned
+ collection as its first parameter and null as its second parameter.
+ Matching score for every returned <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> can be obtained by
+ calling <A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A> on probe <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> and the matching
+ <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>.
+ <p>
+ <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A>s passed to this method must have valid
+ <A HREF="../../sourceafis/simple/Fingerprint.html#getTemplate()"><CODE>template</CODE></A> for every <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A>,
+ i.e. they must have passed through <A HREF="../../sourceafis/simple/AfisEngine.html#extract(sourceafis.simple.Person)"><CODE>extract</CODE></A> method.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>probe</CODE> - person to look up in the collection<DD><CODE>candidates</CODE> - collection of persons that will be searched
+<DT><B>Returns:</B><DD>All matching <A HREF="../../sourceafis/simple/Person.html" title="class in sourceafis.simple"><CODE>Person</CODE></A> objects in the collection or an empty
+         collection if there is no match. Results are sorted by score in
+         descending order. If you need only one best match, call
+         <A HREF="http://docs.guava-libraries.googlecode.com/git-history/v11.0.2/javadoc/com/google/common/collect/Iterables.html?is-external=true#getFirst(java.lang.Iterable, T)" title="class or interface in com.google.common.collect"><CODE>Iterables.getFirst</CODE></A> method from Guava library. Pass the returned
+         collection as its first parameter and null as its second
+         parameter.<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/AfisEngine.html#setThreshold(float)"><CODE>setThreshold</CODE></A>, 
+<A HREF="../../sourceafis/simple/AfisEngine.html#verify(sourceafis.simple.Person, sourceafis.simple.Person)"><CODE>verify</CODE></A></DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../sourceafis/simple/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?sourceafis/simple/AfisEngine.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AfisEngine.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

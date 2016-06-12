@@ -1,0 +1,566 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+Finger (SourceAFIS for Java)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="Finger (SourceAFIS for Java)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../sourceafis/simple/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../sourceafis/simple/AfisEngine.html" title="class in sourceafis.simple"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?sourceafis/simple/Finger.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="Finger.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#enum_constant_summary">ENUM CONSTANTS</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#enum_constant_detail">ENUM CONSTANTS</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+sourceafis.simple</FONT>
+<BR>
+Enum Finger</H2>
+<PRE>
+<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
+  <IMG SRC="../../resources/inherit.gif" ALT="extended by "><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">java.lang.Enum</A>&lt;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A>&gt;
+      <IMG SRC="../../resources/inherit.gif" ALT="extended by "><B>sourceafis.simple.Finger</B>
+</PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="http://download.oracle.com/javase/6/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</A>&lt;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A>&gt;</DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public enum <B>Finger</B><DT>extends <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</A>&lt;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A>&gt;</DL>
+</PRE>
+
+<P>
+Finger position on hand.
+ 
+ <p>
+ Finger position is used to speed up matching by skipping fingerprint pairs
+ that cannot match due to incompatible position. SourceAFIS will return zero
+ similarity score for incompatible fingerprint pairs.
+ </p>
+ 
+ <p>
+   This feature is optional. It can be disabled by using finger position <A HREF="../../sourceafis/simple/Finger.html#ANY"><CODE>ANY</CODE></A> 
+   which is default value of <A HREF="../../sourceafis/simple/Fingerprint.html#setFinger(sourceafis.simple.Finger)"><CODE>finger</CODE></A> property for new <A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><CODE>Fingerprint</CODE></A> objects.
+ </p>
+ 
+ <p>
+ A compatible fingerprint pair consists of two fingerprints with the same
+ finger position, e.g. <A HREF="../../sourceafis/simple/Finger.html#RIGHT_THUMB"><CODE>RIGHT_THUMB</CODE></A> matches only other <A HREF="../../sourceafis/simple/Finger.html#RIGHT_THUMB"><CODE>RIGHT_THUMB</CODE></A>. Alternatively,
+ compatible fingerprint pair can be also formed if one of the fingerprints
+ has <A HREF="../../sourceafis/simple/Finger.html#ANY"><CODE>ANY</CODE></A> finger position, e.g. <A HREF="../../sourceafis/simple/Finger.html#ANY"><CODE>ANY</CODE></A> can be matched against all other finger
+ positions and all other finger positions can be matched against <A HREF="../../sourceafis/simple/Finger.html#ANY"><CODE>ANY</CODE></A>. Two
+ fingerprints with <A HREF="../../sourceafis/simple/Finger.html#ANY"><CODE>ANY</CODE></A> positions are compatible as well, of course.
+ </p>
+ <p>
+ All enum values have numeric codes like in C# or C++. Documentation for each enum value notes
+ its numeric code. The numeric code can be read by calling <A HREF="../../sourceafis/simple/Finger.html#toByte()"><CODE>toByte()</CODE></A> method on the enum value.
+ Numeric code can be converted to enum value by calling <A HREF="../../sourceafis/simple/Finger.html#valueOf(int)"><CODE>valueOf(int)</CODE></A>.
+ </p>
+ <ul>
+ <li>0 - <A HREF="../../sourceafis/simple/Finger.html#ANY"><CODE>ANY</CODE></A>
+ <li>1 - <A HREF="../../sourceafis/simple/Finger.html#RIGHT_THUMB"><CODE>RIGHT_THUMB</CODE></A>
+ <li>2 - <A HREF="../../sourceafis/simple/Finger.html#LEFT_THUMB"><CODE>LEFT_THUMB</CODE></A>
+ <li>3 - <A HREF="../../sourceafis/simple/Finger.html#RIGHT_INDEX"><CODE>RIGHT_INDEX</CODE></A>
+ <li>4 - <A HREF="../../sourceafis/simple/Finger.html#LEFT_INDEX"><CODE>LEFT_INDEX</CODE></A>
+ <li>5 - <A HREF="../../sourceafis/simple/Finger.html#RIGHT_MIDDLE"><CODE>RIGHT_MIDDLE</CODE></A>
+ <li>6 - <A HREF="../../sourceafis/simple/Finger.html#LEFT_MIDDLE"><CODE>LEFT_MIDDLE</CODE></A>
+ <li>7 - <A HREF="../../sourceafis/simple/Finger.html#RIGHT_RING"><CODE>RIGHT_RING</CODE></A>
+ <li>8 - <A HREF="../../sourceafis/simple/Finger.html#LEFT_RING"><CODE>LEFT_RING</CODE></A>
+ <li>9 - <A HREF="../../sourceafis/simple/Finger.html#RIGHT_LITTLE"><CODE>RIGHT_LITTLE</CODE></A>
+ <li>10 - <A HREF="../../sourceafis/simple/Finger.html#LEFT_LITTLE"><CODE>LEFT_LITTLE</CODE></A>
+ </ul>
+<P>
+
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../sourceafis/simple/Fingerprint.html#setFinger(sourceafis.simple.Finger)"><CODE>Fingerprint.setFinger</CODE></A></DL>
+<HR>
+
+<P>
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+
+<A NAME="enum_constant_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Enum Constant Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#ANY">ANY</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unspecified finger position (0).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#LEFT_INDEX">LEFT_INDEX</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index finger on the left hand (4).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#LEFT_LITTLE">LEFT_LITTLE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Little finger on the left hand (10).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#LEFT_MIDDLE">LEFT_MIDDLE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Middle finger on the left hand (6).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#LEFT_RING">LEFT_RING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ring finger on the left hand (8).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#LEFT_THUMB">LEFT_THUMB</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thumb finger on the left hand (2).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#RIGHT_INDEX">RIGHT_INDEX</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index finger on the right hand (3).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#RIGHT_LITTLE">RIGHT_LITTLE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Little finger on the right hand (9).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#RIGHT_MIDDLE">RIGHT_MIDDLE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Middle finger on the right hand (5).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#RIGHT_RING">RIGHT_RING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ring finger on the right hand (7).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#RIGHT_THUMB">RIGHT_THUMB</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thumb finger on the right hand (1).</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;byte</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#toByte()">toByte</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts enum value to its numeric code.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#valueOf(int)">valueOf</A></B>(int&nbsp;code)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts numeric code to the corresponding enum value.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#valueOf(java.lang.String)">valueOf</A></B>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the enum constant of this type with the specified name.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A>[]</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../sourceafis/simple/Finger.html#values()">values</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing the constants of this enum type, in
+the order they are declared.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Enum"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#compareTo(E)" title="class or interface in java.lang">compareTo</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#getDeclaringClass()" title="class or interface in java.lang">getDeclaringClass</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#name()" title="class or interface in java.lang">name</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#ordinal()" title="class or interface in java.lang">ordinal</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Enum.html?is-external=true#valueOf(java.lang.Class, java.lang.String)" title="class or interface in java.lang">valueOf</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ ENUM CONSTANT DETAIL =========== -->
+
+<A NAME="enum_constant_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Enum Constant Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="ANY"><!-- --></A><H3>
+ANY</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>ANY</B></PRE>
+<DL>
+<DD>Unspecified finger position (0).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="RIGHT_THUMB"><!-- --></A><H3>
+RIGHT_THUMB</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>RIGHT_THUMB</B></PRE>
+<DL>
+<DD>Thumb finger on the right hand (1).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="LEFT_THUMB"><!-- --></A><H3>
+LEFT_THUMB</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>LEFT_THUMB</B></PRE>
+<DL>
+<DD>Thumb finger on the left hand (2).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="RIGHT_INDEX"><!-- --></A><H3>
+RIGHT_INDEX</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>RIGHT_INDEX</B></PRE>
+<DL>
+<DD>Index finger on the right hand (3).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="LEFT_INDEX"><!-- --></A><H3>
+LEFT_INDEX</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>LEFT_INDEX</B></PRE>
+<DL>
+<DD>Index finger on the left hand (4).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="RIGHT_MIDDLE"><!-- --></A><H3>
+RIGHT_MIDDLE</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>RIGHT_MIDDLE</B></PRE>
+<DL>
+<DD>Middle finger on the right hand (5).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="LEFT_MIDDLE"><!-- --></A><H3>
+LEFT_MIDDLE</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>LEFT_MIDDLE</B></PRE>
+<DL>
+<DD>Middle finger on the left hand (6).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="RIGHT_RING"><!-- --></A><H3>
+RIGHT_RING</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>RIGHT_RING</B></PRE>
+<DL>
+<DD>Ring finger on the right hand (7).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="LEFT_RING"><!-- --></A><H3>
+LEFT_RING</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>LEFT_RING</B></PRE>
+<DL>
+<DD>Ring finger on the left hand (8).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="RIGHT_LITTLE"><!-- --></A><H3>
+RIGHT_LITTLE</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>RIGHT_LITTLE</B></PRE>
+<DL>
+<DD>Little finger on the right hand (9).
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="LEFT_LITTLE"><!-- --></A><H3>
+LEFT_LITTLE</H3>
+<PRE>
+public static final <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>LEFT_LITTLE</B></PRE>
+<DL>
+<DD>Little finger on the left hand (10).
+<P>
+<DL>
+</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="values()"><!-- --></A><H3>
+values</H3>
+<PRE>
+public static <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A>[] <B>values</B>()</PRE>
+<DL>
+<DD>Returns an array containing the constants of this enum type, in
+the order they are declared.  This method may be used to iterate
+over the constants as follows:
+<pre>
+for (Finger c : Finger.values())
+&nbsp;   System.out.println(c);
+</pre>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>an array containing the constants of this enum type, in
+the order they are declared</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="valueOf(java.lang.String)"><!-- --></A><H3>
+valueOf</H3>
+<PRE>
+public static <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>valueOf</B>(<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;name)</PRE>
+<DL>
+<DD>Returns the enum constant of this type with the specified name.
+The string must match <I>exactly</I> an identifier used to declare an
+enum constant in this type.  (Extraneous whitespace characters are 
+not permitted.)
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>name</CODE> - the name of the enum constant to be returned.
+<DT><B>Returns:</B><DD>the enum constant with the specified name
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</A></CODE> - if this enum type has no constant
+with the specified name
+<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</A></CODE> - if the argument is null</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toByte()"><!-- --></A><H3>
+toByte</H3>
+<PRE>
+public byte <B>toByte</B>()</PRE>
+<DL>
+<DD>Converts enum value to its numeric code.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>numeric code associated with this enum value</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="valueOf(int)"><!-- --></A><H3>
+valueOf</H3>
+<PRE>
+public static <A HREF="../../sourceafis/simple/Finger.html" title="enum in sourceafis.simple">Finger</A> <B>valueOf</B>(int&nbsp;code)</PRE>
+<DL>
+<DD>Converts numeric code to the corresponding enum value.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>code</CODE> - the numeric code to be converted
+<DT><B>Returns:</B><DD>enum value corresponding to the numeric code
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</A></CODE> - if the argument doesn't correspond to any enum value</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../sourceafis/simple/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../sourceafis/simple/AfisEngine.html" title="class in sourceafis.simple"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../sourceafis/simple/Fingerprint.html" title="class in sourceafis.simple"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../index.html?sourceafis/simple/Finger.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="Finger.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#enum_constant_summary">ENUM CONSTANTS</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#enum_constant_detail">ENUM CONSTANTS</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

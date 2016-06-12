@@ -1,0 +1,8 @@
+/home/markus/Desktop/NewPatientCare/NewPatientCare/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/markus/Desktop/NewPatientCare/NewPatientCare/obj/x86/Debug/NewPatientCare.gtk-gui.gui.stetic
+/home/markus/Desktop/NewPatientCare/NewPatientCare/bin/Debug/NewPatientCare.exe.mdb
+/home/markus/Desktop/NewPatientCare/NewPatientCare/bin/Debug/NewPatientCare.exe
+/home/markus/Desktop/NewPatientCare/NewPatientCare/obj/x86/Debug/NewPatientCare.exe
+/home/markus/Desktop/NewPatientCare/NewPatientCare/obj/x86/Debug/NewPatientCare.exe.mdb
+/home/markus/Desktop/NewPatientCare/NewPatientCare/bin/Debug/PresentationCore.dll
+/home/markus/Desktop/NewPatientCare/NewPatientCare/bin/Debug/SourceAFIS.Mono.dll
