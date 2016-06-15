@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="NewPatientCare/NewPatientCare.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NewPatientCare/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NewPatientCare/Controller.cs">
     <Files>
-      <File FileName="NewPatientCare/Program.cs" Line="124" Column="51" />
+      <File FileName="NewPatientCare/Controller.cs" Line="295" Column="41" />
+      <File FileName="NewPatientCare/MainWindow.cs" Line="84" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

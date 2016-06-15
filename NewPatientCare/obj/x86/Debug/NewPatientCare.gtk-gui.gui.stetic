@@ -90,6 +90,8 @@
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Verify</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnScanClicked" />
+                <signal name="Pressed" handler="OnScanPressed" />
               </widget>
               <packing>
                 <property name="Position">0</property>

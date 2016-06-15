@@ -1,13 +1,17 @@
 ﻿using System;
 using System.IO;
 using Gtk;
-
+using PatientCare;
 public partial class MainWindow: Gtk.Window
 {
 
-	public MainWindow () : base (Gtk.WindowType.Toplevel)
+	Controller program;
+
+	public MainWindow (Controller program) : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+
+		this.program = program;
 
 		var dirDoctors = Directory.GetDirectories("../../Doctors");
 		for (int i = 0; i < dirDoctors.Length; i++) {
@@ -22,7 +26,7 @@ public partial class MainWindow: Gtk.Window
 		}
 
 	}
-
+		
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
@@ -46,11 +50,14 @@ public partial class MainWindow: Gtk.Window
 			// Try to create the directory.
 			DirectoryInfo di = Directory.CreateDirectory("../../Doctors/" + entryDoctor.Text);
 			Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime("Doctors/" + entryDoctor.Text));
-
+			listDoctors.AppendText (entryDoctor.Text);
 		}
-		PatientCare.Program.writeImage ("../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text);
-		listDoctors.AppendText (entryDoctor.Text);
-		labelDoctor.Text = "Enter doctor name";
+		PatientCare.Controller.writeImage ("../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text);
+
+		labelDoctor.Text = "Doctor name";
+
+		program.addDoctor ("../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text, entryDoctor.Text);
+		entryDoctor.Text = "Enter doctor name";
 	}
 
 	protected void OnAddPatientClicked (object sender, EventArgs e)
@@ -60,11 +67,48 @@ public partial class MainWindow: Gtk.Window
 			// Try to create the directory.
 			DirectoryInfo di = Directory.CreateDirectory("../../Patients/" + entryPatient.Text);
 			Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime("Doctors/" + entryDoctor.Text));
-
+			listPatients.AppendText (entryPatient.Text);
 		}
-		PatientCare.Program.writeImage ("../../Patients/" + entryPatient.Text + "/" + entryPatient.Text);
-		listPatients.AppendText (entryPatient.Text);
-		labelPatient.Text = "Enter patient name";
+		PatientCare.Controller.writeImage ("../../Patients/" + entryPatient.Text + "/" + entryPatient.Text);
+		labelPatient.Text = "Patient name";
+		program.addPatient ("../../Patients/" + entryPatient.Text + "/" + entryPatient.Text, entryPatient.Text);
+		entryPatient.Text = "Please enter patient name";
 	}
 		
+	protected void OnScanClicked (object sender, EventArgs e)
+	{
+
+		result.Text = "Scanning Doctor";
+		result.Show ();
+		Boolean verified = this.program.verifyDoctor (listDoctors.ActiveText);
+
+		if (verified) {
+			result.Text = "\"Welcome doctor, scanning patient...\"";
+
+		} else {
+			result.Text = "VERIFICATION FAILED!";
+			return;
+		}
+
+	
+		verified = this.program.verifyPatient (listPatients.ActiveText);
+
+		if (verified) {
+			result.Text = "VERIFICATION SUCCESSFUL!";
+
+		} else {
+			result.Text = "VERIFICATION FAILED!";
+			return;
+		}
+
+	}
+
+	public void doctorScanned(){
+		result.Text = "Welcom doctor, scanning patient...";
+	}
+
+	protected void OnScanPressed (object sender, EventArgs e)
+	{
+		result.Text = "Scanning doctor/patient...";
+	}
 }

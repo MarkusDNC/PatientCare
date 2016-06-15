@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Media;
 using SourceAFIS.Simple;
 using Gtk;
 
@@ -15,7 +16,7 @@ namespace PatientCare
 {
 
 
-	public class Program
+	public class Controller
 	{
 		[DllImport("libftdi")]
 		public static extern int ftdi_get_library_version ();
@@ -51,12 +52,11 @@ namespace PatientCare
 		List<MyPerson> db_doctor;
 		List<MyPerson> db_patient;
 
-		public Program(){
+		public Controller(){
 
 			Afis = new AfisEngine ();
 			this.db_doctor = new List<MyPerson>();
 			this.db_patient = new List<MyPerson>();
-
 
 		}
 
@@ -69,7 +69,6 @@ namespace PatientCare
 				foreach(String imagefile in imageFiles) {
 					this.db_doctor.Add (Enroll (readImage (imagefile), name));
 				}
-
 			}
 
 			var dirPatients = Directory.GetDirectories("../../Patients");
@@ -79,9 +78,7 @@ namespace PatientCare
 				foreach(String imagefile in imageFiles) {
 					this.db_patient.Add (Enroll (readImage (imagefile), name));
 				}
-
 			}
-		
 		}
 
 
@@ -93,13 +90,11 @@ namespace PatientCare
 			this.db_patient.Add (Enroll (readImage (path + ".raw"), name));
 		}
 
-		public Boolean verify(String patName, String drName){
+		public Boolean verifyDoctor( String drName ){
 
 			Tuple <byte[,], byte[,]> images;
 			MyPerson doctorMatch = null;
-			MyPerson patientMatch = null;
 			MyPerson doctorProbe;
-			MyPerson patientProbe;
 			Afis.Threshold = 30;
 
 			MyPerson doctor = null;
@@ -110,28 +105,61 @@ namespace PatientCare
 					doctor = person;
 					break;
 				}
-
 			}
-				
+			double currentTime = GetCurrentMilli ();	
 
-			while(doctorMatch == null && get){//|| patientMatch == null){
+			while(doctorMatch == null && GetCurrentMilli() < (currentTime + 20000) ){//|| patientMatch == null){
 				images = captureImages ();
 				doctorProbe = Enroll (images.Item1, "#probe1");
-				//patientProbe = Enroll (images.Item2, "#probe2");
-
 				float value = Afis.Verify (doctorProbe, doctor);
 				if (value > 0.8) {
-				
 					doctorMatch = doctorProbe;
-
 				}
+			}
+			if (doctorMatch != null) {
+				Console.WriteLine ("Welcome Dr " + doctor.Name);
+				SystemSounds.Exclamation.Play ();
+			} 
+			else {
+				return false;
+			}
+			return true;
+		}
 
-				//patientMatch = Afis.Identify (patientProbe, db_patient).FirstOrDefault () as MyPerson;
-			
+		public Boolean verifyPatient(String name){
+
+			Tuple <byte[,], byte[,]> images;
+			MyPerson patientMatch = null;
+			MyPerson patientProbe;
+			MyPerson patient = null;
+
+			foreach (MyPerson person in this.db_patient) {
+				if (person.Name == name) {
+					patient = person;
+					break;
+				}
 			}
 
-			Console.WriteLine ("Welcome Dr " + doctorMatch.Name);
+			double currentTime = GetCurrentMilli ();
+			while(patientMatch == null && GetCurrentMilli() < (currentTime + 20000) ){//|| patientMatch == null){
+				images = captureImages ();
+				patientProbe = Enroll (images.Item1, "#patientProbe");
+
+				float value = Afis.Verify (patientProbe, patient);
+				if (value > 0.8) {
+					patientMatch = patientProbe;
+				}
+			}
+
+			if (patientMatch != null) {
+				Console.WriteLine ("Welcome " + patient.Name);
+				SystemSounds.Asterisk.Play ();
+			} else {
+
+				return false;
+			}
 			return true;
+
 		}
 
 		static MyPerson Enroll(byte [,] image, string name)
@@ -252,7 +280,7 @@ namespace PatientCare
 				Console.WriteLine ("Sensor reset");
 			}
 
-			Program program = new Program ();
+			Controller program = new Controller ();
 			program.Initialize ();
 			Application.Init ();
 			MainWindow win = new MainWindow (program);

@@ -215,6 +215,8 @@ public partial class MainWindow
 		this.DefaultHeight = 391;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.scan.Clicked += new global::System.EventHandler (this.OnScanClicked);
+		this.scan.Pressed += new global::System.EventHandler (this.OnScanPressed);
 		this.addDoctor.Clicked += new global::System.EventHandler (this.OnAddDoctorClicked);
 		this.addPatient.Clicked += new global::System.EventHandler (this.OnAddPatientClicked);
 		this.entryDoctor.Changed += new global::System.EventHandler (this.OnEntryDoctorChanged);
