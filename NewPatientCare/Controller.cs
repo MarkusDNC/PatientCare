@@ -85,9 +85,28 @@ namespace PatientCare
 		public void addDoctor(String path, String name){
 			this.db_doctor.Add (Enroll (readImage (path + ".raw"), name));
 		}
+			
 
 		public void addPatient(String path, String name){
 			this.db_patient.Add (Enroll (readImage (path + ".raw"), name));
+		}
+
+		public void removeDoctor(String name){
+			foreach (MyPerson person in this.db_doctor) {
+				if (person.Name == name) {
+					this.db_doctor.Remove(person);
+					break;
+				}
+			}
+		}
+
+		public void removePatient(String name){
+			foreach (MyPerson person in this.db_patient) {
+				if (person.Name == name) {
+					this.db_patient.Remove(person);
+					break;
+				}
+			}
 		}
 
 		public Boolean verifyDoctor( String drName ){

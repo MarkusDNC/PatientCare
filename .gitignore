@@ -35,3 +35,12 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Fingerprints #
+################
+*.raw
+
+# Folders #
+###########
+Patients
+Doctors

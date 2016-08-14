@@ -7,7 +7,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/NewPatientCare.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="519 391">
+  <widget class="Gtk.Window" id="MainWindow" design-size="519 393">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -24,6 +24,8 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <property name="DefaultWidth">800</property>
+    <property name="DefaultHeight">600</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -46,14 +48,14 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hbox4">
+          <widget class="Gtk.HBox" id="hbox1">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.ComboBoxEntry" id="listDoctors">
+              <widget class="Gtk.Label" id="chooseDoctorLabel">
                 <property name="MemberName" />
-                <property name="IsTextCombo">True</property>
-                <property name="Items" translatable="yes" />
+                <property name="HeightRequest">30</property>
+                <property name="LabelProp" translatable="yes">Choose Doctor</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -61,10 +63,11 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.ComboBoxEntry" id="listPatients">
+              <widget class="Gtk.Label" id="choosePatientLabel">
                 <property name="MemberName" />
-                <property name="IsTextCombo">True</property>
-                <property name="Items" translatable="yes" />
+                <property name="HeightRequest">30</property>
+                <property name="LabelProp" translatable="yes">Choose Patient</property>
+                <property name="Justify">Center</property>
               </widget>
               <packing>
                 <property name="Position">1</property>
@@ -80,22 +83,33 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hbox5">
+          <widget class="Gtk.HBox" id="hbox4">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.Button" id="scan">
+              <widget class="Gtk.ComboBoxEntry" id="listDoctors">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Verify</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnScanClicked" />
-                <signal name="Pressed" handler="OnScanPressed" />
+                <property name="HeightRequest">30</property>
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes" />
               </widget>
               <packing>
                 <property name="Position">0</property>
                 <property name="AutoSize">False</property>
+                <property name="Padding">25</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.ComboBoxEntry" id="listPatients">
+                <property name="MemberName" />
+                <property name="HeightRequest">40</property>
+                <property name="IsTextCombo">True</property>
+                <property name="Items" translatable="yes" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">False</property>
+                <property name="Padding">25</property>
               </packing>
             </child>
           </widget>
@@ -107,13 +121,84 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Label" id="result">
+          <widget class="Gtk.HBox" id="hbox5">
             <property name="MemberName" />
-            <property name="HeightRequest">60</property>
-            <property name="LabelProp" translatable="yes">Press Verify to scan</property>
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Button" id="scan">
+                <property name="MemberName" />
+                <property name="HeightRequest">70</property>
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Verify</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnScanClicked" />
+                <signal name="Pressed" handler="OnScanPressed" />
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
+                <property name="Padding">25</property>
+              </packing>
+            </child>
           </widget>
           <packing>
             <property name="Position">3</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="result">
+            <property name="MemberName" />
+            <property name="HeightRequest">60</property>
+            <property name="LabelProp" translatable="yes">Press Verify to scan doctor, after audio confirmation scan patient.</property>
+          </widget>
+          <packing>
+            <property name="Position">4</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HBox" id="hbox6">
+            <property name="MemberName" />
+            <property name="Spacing">6</property>
+            <child>
+              <widget class="Gtk.Button" id="removeDoctor">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Remove Selected Doctor</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnRemoveDoctorClicked" />
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
+                <property name="Padding">25</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="button1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Remove Selected Patient</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnButton1Clicked" />
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">False</property>
+                <property name="Padding">25</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">5</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -138,6 +223,7 @@
               <packing>
                 <property name="Position">0</property>
                 <property name="AutoSize">False</property>
+                <property name="Padding">25</property>
               </packing>
             </child>
             <child>
@@ -153,11 +239,12 @@
                 <property name="PackType">End</property>
                 <property name="Position">1</property>
                 <property name="AutoSize">False</property>
+                <property name="Padding">25</property>
               </packing>
             </child>
           </widget>
           <packing>
-            <property name="Position">5</property>
+            <property name="Position">7</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -179,6 +266,7 @@
               <packing>
                 <property name="Position">0</property>
                 <property name="AutoSize">True</property>
+                <property name="Padding">25</property>
               </packing>
             </child>
             <child>
@@ -193,21 +281,16 @@
               <packing>
                 <property name="Position">1</property>
                 <property name="AutoSize">True</property>
+                <property name="Padding">25</property>
               </packing>
             </child>
           </widget>
           <packing>
-            <property name="Position">6</property>
+            <property name="Position">8</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
-        </child>
-        <child>
-          <placeholder />
-        </child>
-        <child>
-          <placeholder />
         </child>
         <child>
           <widget class="Gtk.Statusbar" id="statusbar1">

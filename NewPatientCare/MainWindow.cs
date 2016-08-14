@@ -13,6 +13,8 @@ public partial class MainWindow: Gtk.Window
 
 		this.program = program;
 
+		scan.Child.ModifyFont(Pango.FontDescription.FromString("Arial 18"));
+
 		var dirDoctors = Directory.GetDirectories("../../Doctors");
 		for (int i = 0; i < dirDoctors.Length; i++) {
 			String temp = dirDoctors [i].Replace ("../../Doctors/", "");
@@ -110,5 +112,28 @@ public partial class MainWindow: Gtk.Window
 	protected void OnScanPressed (object sender, EventArgs e)
 	{
 		result.Text = "Scanning doctor/patient...";
+	}
+
+
+	protected void OnButton1Clicked (object sender, EventArgs e)
+	{
+		Console.WriteLine ("../../Patients/" + listPatients.ActiveText + "/" + listPatients.ActiveText + ".raw");
+		if (Directory.Exists ("../../Patients/" + listPatients.ActiveText)) {
+			File.Delete ("../../Patients/" + listPatients.ActiveText + "/" + listPatients.ActiveText + ".raw");
+			Directory.Delete ("../../Patients/" + listPatients.ActiveText +"/");
+			program.removePatient (listPatients.ActiveText);
+			listPatients.RemoveText (listPatients.Active);
+		}
+	}
+
+	protected void OnRemoveDoctorClicked (object sender, EventArgs e)
+	{
+		Console.WriteLine ("../../Doctors/" + listDoctors.ActiveText + "/" + listDoctors.ActiveText + ".raw");
+		if (Directory.Exists ("../../Doctors/" + listDoctors.ActiveText)) {
+			File.Delete ("../../Doctors/" + listDoctors.ActiveText + "/" + listDoctors.ActiveText + ".raw");
+			Directory.Delete ("../../Doctors/" + listDoctors.ActiveText +"/");
+			program.removeDoctor (listDoctors.ActiveText);
+			listDoctors.RemoveText (listDoctors.Active);
+		}
 	}
 }

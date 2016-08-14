@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="NewPatientCare/NewPatientCare.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NewPatientCare/Controller.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NewPatientCare/MainWindow.cs">
     <Files>
-      <File FileName="NewPatientCare/Controller.cs" Line="295" Column="41" />
+      <File FileName="NewPatientCare/Controller.cs" Line="295" Column="29" />
       <File FileName="NewPatientCare/MainWindow.cs" Line="84" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
