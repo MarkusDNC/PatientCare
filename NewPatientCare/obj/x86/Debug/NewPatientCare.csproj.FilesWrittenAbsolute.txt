@@ -6,3 +6,13 @@
 /home/markus/Desktop/NewPatientCare/NewPatientCare/obj/x86/Debug/NewPatientCare.exe.mdb
 /home/markus/Desktop/NewPatientCare/NewPatientCare/bin/Debug/PresentationCore.dll
 /home/markus/Desktop/NewPatientCare/NewPatientCare/bin/Debug/SourceAFIS.Mono.dll
+/home/markus/Desktop/NewPatientCare/NewPatientCare/bin/Debug/mysql.data.dll
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/obj/x86/Debug/NewPatientCare.gtk-gui.gui.stetic
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/bin/Debug/NewPatientCare.exe.mdb
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/bin/Debug/NewPatientCare.exe
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/obj/x86/Debug/NewPatientCare.exe
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/obj/x86/Debug/NewPatientCare.exe.mdb
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/bin/Debug/PresentationCore.dll
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/bin/Debug/SourceAFIS.Mono.dll
+/Users/Markus/Documents/NewPatientCare/NewPatientCare/bin/Debug/MySql.Data.dll

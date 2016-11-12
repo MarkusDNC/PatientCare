@@ -2,6 +2,8 @@
 using System.IO;
 using Gtk;
 using PatientCare;
+using MySql;
+using System.Threading;
 public partial class MainWindow: Gtk.Window
 {
 
@@ -35,28 +37,16 @@ public partial class MainWindow: Gtk.Window
 		a.RetVal = true;
 	}
 
-		protected void OnEntryDoctorChanged (object sender, EventArgs e)
-	{
-		labelDoctor.Text = entryDoctor.Text;
-	}
-
-	protected void OnEntryPatientChanged (object sender, EventArgs e)
-	{
-		labelPatient.Text = entryPatient.Text;
-	}
-
 	protected void OnAddDoctorClicked (object sender, EventArgs e)
 	{
 		if (!Directory.Exists("../../Doctors/" + entryDoctor.Text)) 
 		{
 			// Try to create the directory.
-			DirectoryInfo di = Directory.CreateDirectory("../../Doctors/" + entryDoctor.Text);
+			Directory.CreateDirectory("../../Doctors/" + entryDoctor.Text);
 			Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime("Doctors/" + entryDoctor.Text));
 			listDoctors.AppendText (entryDoctor.Text);
 		}
 		PatientCare.Controller.writeImage ("../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text);
-
-		labelDoctor.Text = "Doctor name";
 
 		program.addDoctor ("../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text, entryDoctor.Text);
 		entryDoctor.Text = "Enter doctor name";
@@ -67,53 +57,63 @@ public partial class MainWindow: Gtk.Window
 		if (!Directory.Exists("../../Patients/" + entryPatient.Text)) 
 		{
 			// Try to create the directory.
-			DirectoryInfo di = Directory.CreateDirectory("../../Patients/" + entryPatient.Text);
+			Directory.CreateDirectory("../../Patients/" + entryPatient.Text);
 			Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime("Doctors/" + entryDoctor.Text));
 			listPatients.AppendText (entryPatient.Text);
 		}
 		PatientCare.Controller.writeImage ("../../Patients/" + entryPatient.Text + "/" + entryPatient.Text);
-		labelPatient.Text = "Patient name";
 		program.addPatient ("../../Patients/" + entryPatient.Text + "/" + entryPatient.Text, entryPatient.Text);
 		entryPatient.Text = "Please enter patient name";
 	}
 		
 	protected void OnScanClicked (object sender, EventArgs e)
 	{
+		scan.Sensitive = false;
+		(new Thread(() => {
 
-		result.Text = "Scanning Doctor";
-		result.Show ();
-		Boolean verified = this.program.verifyDoctor (listDoctors.ActiveText);
+			Gtk.Application.Invoke(delegate {
+				result.Text = "Scanning Doctor";
+				result.Show ();
+			});
 
-		if (verified) {
-			result.Text = "\"Welcome doctor, scanning patient...\"";
+			Boolean verified = this.program.verifyDoctor (listDoctors.ActiveText);
 
-		} else {
-			result.Text = "VERIFICATION FAILED!";
-			return;
-		}
+			Gtk.Application.Invoke(delegate {
+				
+				result.Text = verified ? "\"Welcome " + listDoctors.ActiveText + " , now scanning patient...\"" : "VERIFICATION FAILED!";
+			});
 
-	
-		verified = this.program.verifyPatient (listPatients.ActiveText);
+			if(!verified) {
+				Gtk.Application.Invoke(delegate {
+					scan.Sensitive = true;
+				});
+				Thread.CurrentThread.Abort();
+			}
 
-		if (verified) {
-			result.Text = "VERIFICATION SUCCESSFUL!";
+		
+			verified = this.program.verifyPatient (listPatients.ActiveText);
 
-		} else {
-			result.Text = "VERIFICATION FAILED!";
-			return;
-		}
+			if (verified)
+			{
+				var process = System.Diagnostics.Process.Start("raspistill", "-o cam.jpg");
+				process.WaitForExit();
+				patientImage.Pixbuf = new Gdk.Pixbuf("cam.jpg");
+			}
+
+			Gtk.Application.Invoke(delegate {
+				result.Text = verified ? "VERIFICATION SUCCESSFUL!" : "VERIFICATION FAILED!";
+				scan.Sensitive = true;
+			});
+
+			Thread.CurrentThread.Abort();
+
+		})).Start();
 
 	}
 
 	public void doctorScanned(){
-		result.Text = "Welcom doctor, scanning patient...";
+		result.Text = "Welcom doctor, now scanning patient...";
 	}
-
-	protected void OnScanPressed (object sender, EventArgs e)
-	{
-		result.Text = "Scanning doctor/patient...";
-	}
-
 
 	protected void OnButton1Clicked (object sender, EventArgs e)
 	{

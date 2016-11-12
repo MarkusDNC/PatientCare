@@ -14,11 +14,11 @@ using Gtk;
 
 namespace PatientCare
 {
-
+	
 
 	public class Controller
 	{
-		[DllImport("libftdi")]
+		[DllImport("libftdi1")]
 		public static extern int ftdi_get_library_version ();
 		[DllImport("libfingerprint")]
 		public static extern int openDevice();
