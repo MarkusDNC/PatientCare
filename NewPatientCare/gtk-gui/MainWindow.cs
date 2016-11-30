@@ -47,6 +47,8 @@ public partial class MainWindow
 
 	private global::Gtk.Entry entryPatient;
 
+	private global::Gtk.Image patientImage;
+
 	protected virtual void Build()
 	{
 		global::Stetic.Gui.Initialize(this);
@@ -61,12 +63,12 @@ public partial class MainWindow
 		w1.Add(this.quitAction, null);
 		this.UIManager.InsertActionGroup(w1, 0);
 		this.AddAccelGroup(this.UIManager.AccelGroup);
-		this.WidthRequest = 600;
+		this.WidthRequest = 480;
 		this.HeightRequest = 800;
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString("MainWindow");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
-		this.DefaultWidth = 600;
+		this.DefaultWidth = 480;
 		this.DefaultHeight = 800;
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox();
@@ -243,6 +245,14 @@ public partial class MainWindow
 		w19.Position = 6;
 		w19.Expand = false;
 		w19.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.patientImage = new global::Gtk.Image();
+		this.patientImage.Name = "patientImage";
+		this.vbox1.Add(this.patientImage);
+		global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.patientImage]));
+		w20.Position = 7;
+		w20.Expand = false;
+		w20.Fill = false;
 		this.Add(this.vbox1);
 		if ((this.Child != null))
 		{

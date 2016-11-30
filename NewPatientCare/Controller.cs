@@ -18,7 +18,7 @@ namespace PatientCare
 
 	public class Controller
 	{
-		[DllImport("libftdi1")]
+		[DllImport("libftdi")]
 		public static extern int ftdi_get_library_version ();
 		[DllImport("libfingerprint")]
 		public static extern int openDevice();
