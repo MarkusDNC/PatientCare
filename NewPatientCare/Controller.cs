@@ -25,7 +25,7 @@ namespace PatientCare
 		[DllImport("libfingerprint")]
 		public static extern int resetSensor ();
 		[DllImport("libfingerprint")]
-		public static extern int captureImage(byte adcref, byte drivc, byte sensemode, byte[] pdata);
+		public static extern int captureImage(bool isPatient, byte adcref, byte drivc, byte sensemode, byte[] pdata);
 
 		static string[] doctor_array = new string[100];
 		static string[] patient_array = new string[100];
@@ -128,7 +128,7 @@ namespace PatientCare
 			double currentTime = GetCurrentMilli ();	
 
 			while(doctorMatch == null && GetCurrentMilli() < (currentTime + 20000) ){//|| patientMatch == null){
-				images = captureImages ();
+				images = captureImages (false);
 				doctorProbe = Enroll (images.Item1, "#probe1");
 				float value = Afis.Verify (doctorProbe, doctor);
 				if (value > 0.8) {
@@ -161,7 +161,7 @@ namespace PatientCare
 
 			double currentTime = GetCurrentMilli ();
 			while(patientMatch == null && GetCurrentMilli() < (currentTime + 20000) ){//|| patientMatch == null){
-				images = captureImages ();
+				images = captureImages (true);
 				patientProbe = Enroll (images.Item1, "#patientProbe");
 
 				float value = Afis.Verify (patientProbe, patient);
@@ -199,12 +199,12 @@ namespace PatientCare
 		}
 			
 
-		static Tuple<byte[,], byte[,]> captureImages(){
+		static Tuple<byte[,], byte[,]> captureImages( bool isPatient){
 			//Tuple <string,string> imageList = new Tuple<string,string>(doctor_array [n],patient_array [n] );
 
 			// TODO: Read data from sensor, convert to 2d array, return reading from both sensorns
 			byte[] img = new byte[152*200];
-			captureImage (2, 127, 0, img);
+			captureImage (isPatient, 2, 127, 0, img);
 			byte[,] fingerprintImage = convertImage (img);
 			return new Tuple<byte[,], byte[,]>(fingerprintImage,new byte[1,1]);
 			//return imageList;
@@ -231,10 +231,10 @@ namespace PatientCare
 			return bt;
 		}
 
-		public static void writeImage(String filename){
+		public static void writeImage(bool isPatient, String filename){
 
 			byte[] img = new byte[152*200];
-			captureImage (2, 127, 0, img);
+			captureImage (isPatient, 2, 127, 0, img);
 			using (FileStream fs = File.Create (filename + ".raw")) {
 				fs.Write (img, 0, img.Length);
 			}

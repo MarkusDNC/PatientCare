@@ -247,6 +247,8 @@ public partial class MainWindow
 		w19.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.patientImage = new global::Gtk.Image();
+		this.patientImage.WidthRequest = 400;
+		this.patientImage.HeightRequest = 266;
 		this.patientImage.Name = "patientImage";
 		this.vbox1.Add(this.patientImage);
 		global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.patientImage]));

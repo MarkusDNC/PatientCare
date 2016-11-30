@@ -46,7 +46,7 @@ public partial class MainWindow: Gtk.Window
 			Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime("Doctors/" + entryDoctor.Text));
 			listDoctors.AppendText (entryDoctor.Text);
 		}
-		PatientCare.Controller.writeImage ("../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text);
+		PatientCare.Controller.writeImage (false, "../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text);
 
 		program.addDoctor ("../../Doctors/" + entryDoctor.Text + "/" + entryDoctor.Text, entryDoctor.Text);
 		entryDoctor.Text = "Enter doctor name";
@@ -61,7 +61,7 @@ public partial class MainWindow: Gtk.Window
 			Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime("Doctors/" + entryDoctor.Text));
 			listPatients.AppendText (entryPatient.Text);
 		}
-		PatientCare.Controller.writeImage ("../../Patients/" + entryPatient.Text + "/" + entryPatient.Text);
+		PatientCare.Controller.writeImage (true, "../../Patients/" + entryPatient.Text + "/" + entryPatient.Text);
 		program.addPatient ("../../Patients/" + entryPatient.Text + "/" + entryPatient.Text, entryPatient.Text);
 		entryPatient.Text = "Please enter patient name";
 	}

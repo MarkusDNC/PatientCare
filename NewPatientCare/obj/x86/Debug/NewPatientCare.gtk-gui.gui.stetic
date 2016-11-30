@@ -275,6 +275,8 @@
         <child>
           <widget class="Gtk.Image" id="patientImage">
             <property name="MemberName" />
+            <property name="WidthRequest">400</property>
+            <property name="HeightRequest">266</property>
           </widget>
           <packing>
             <property name="Position">7</property>

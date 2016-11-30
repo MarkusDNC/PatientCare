@@ -4,7 +4,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
-struct ftdi_context *ft_con;
+struct ftdi_context *ft_con_patient;
+struct ftdi_context *ft_con_doctor;
 
 /* open FTDI device and store handle in global scope, setup initial pin states of
    sensor interface */
@@ -12,20 +13,40 @@ int openDevice(void) {
 
 	/* try to open the FTDI usb device */
 	struct ftdi_device_list *devs;
-	ft_con = ftdi_new();
-	int status = ftdi_usb_find_all(ft_con, &devs, VENDOR_ID, PRODUCT_ID);
-	printf("Status: %i\n", status);
-	if( status < 1 ){
-		printf("No devices\n");
+	ft_con_patient = ftdi_new();
+	ft_con_doctor = ftdi_new();
+
+	//int status = ftdi_usb_find_all(ft_con, &devs, VENDOR_ID, PRODUCT_ID);
+
+	int status = 0;
+	int status1 = ftdi_usb_open( ft_con_patient, VENDOR_ID, PRODUCT_ID );
+	int status2 = ftdi_usb_open( ft_con_doctor , VENDOR_ID, PRODUCT_ID_2 );
+
+/*
+	printf("FPC_1: %i\n", status1);
+	printf("FPC_2: %i\n", status2);
+	if( status1 < 0 ){
+		printf("Could not find patient fingerprint readers.\n");
+		return -1;
+	}
+	if( status2 < 0 ){
+				printf("Could not find doctor fingerprint readers.\n");
 		return -1;
 	}
 
 	printf("Found devices\n");
+	*/
 	
-	status = ftdi_usb_open_dev(ft_con, devs->dev);
-	printf("Status: %i\n", status);
-	if( status < 0 ){
-		printf("Could not open device\n");
+	//status = ftdi_usb_open_dev(ft_con, devs->dev);
+	printf("Status 1: %i\n", status1);
+	printf("Status 2: %i\n", status2);
+	if( status1 < 0 ){
+		printf("Could not open patient device.\n");
+		return -1;
+	}
+
+	else if( status2 < 0 ){
+		printf("Could not open doctor device.\n");
 		return -1;
 	}
 
@@ -41,57 +62,109 @@ int openDevice(void) {
 		return -1;
 	}*/
 
-	status = ftdi_usb_reset( ft_con );
+	status = ftdi_usb_reset( ft_con_doctor );
 
 	if( status < 0 ){
-		printf("Could not reset device\n");
+		printf("Could not reset doctor device.\n");
 		return -1;
 	}
 
 	else{
-		printf("Device reset!\n");
+		printf("Doctor device reset!\n");
 	}
 
-	status = ftdi_usb_purge_rx_buffer( ft_con );
+	status = ftdi_usb_reset( ft_con_patient );
+
+	if( status < 0 ){
+		printf("Could not reset patient device.\n");
+		return -1;
+	}
+
+	else{
+		printf("Patient device reset!\n");
+	}
+
+	status = ftdi_usb_purge_rx_buffer( ft_con_doctor );
 
 	if( status < 0) {
-		printf("Purge failed!\n");	
+		printf("Purge of doctor device failed!\n");	
 	}
 	else{
-		printf("Purge success!\n");
+		printf("Purge doctor device success!\n");
+	}
+
+	status = ftdi_usb_purge_rx_buffer( ft_con_patient );
+
+	if( status < 0) {
+		printf("Purge of patient device failed!\n");	
+	}
+	else{
+		printf("Purge patient device success!\n");
 	}
 
 	
-	status = ftdi_set_event_char( ft_con, false, 0 );
+	status = ftdi_set_event_char( ft_con_doctor, false, 0 );
 	if( status < 0 ){
-		printf( "Event character set failed!\n" );
+		printf( "Event character set failed! (Doctor)\n" );
 	}
 	else{
-		printf( "Event character successfully disabled.\n" ); 
+		printf( "Event character successfully disabled. (Doctor)\n" ); 
 	}
 
-	status = ftdi_set_error_char( ft_con, false, 0 );
+	status = ftdi_set_event_char( ft_con_patient, false, 0 );
 	if( status < 0 ){
-		printf( "Error character set failed!\n" );
+		printf( "Event character set failed! (Patient)\n" );
 	}
 	else{
-		printf( "Error character successfully disabled.\n" );
+		printf( "Event character successfully disabled. (Patient)\n" ); 
 	}
 
-	status = ftdi_set_latency_timer( ft_con, 32 );
+	status = ftdi_set_error_char( ft_con_doctor, false, 0 );
+	if( status < 0 ){
+		printf( "Error character set failed! (Doctor)\n" );
+	}
+	else{
+		printf( "Error character successfully disabled. (Doctor).\n" );
+	}
+
+	status = ftdi_set_error_char( ft_con_patient, false, 0 );
+	if( status < 0 ){
+		printf( "Error character set failed! (Patient)\n" );
+	}
+	else{
+		printf( "Error character successfully disabled. (Patient)\n" );
+	}
+
+	status = ftdi_set_latency_timer( ft_con_doctor, 32 );
 	if ( status < 0 ){
-		printf( "Unable to set latency timer!\n" );
+		printf( "Unable to set latency timer! (Doctor)\n" );
 	}	
 	else{
-		printf( "Latency timer set.\n" );
+		printf( "Latency timer set. (Doctor)\n" );
 	}
 
-	status = ftdi_set_bitmode ( ft_con, 0x00, BITMODE_MPSSE );
-	if( status < 0 ){
-		printf( "Bitmode set failed!\n" );
+	status = ftdi_set_latency_timer( ft_con_patient, 32 );
+	if ( status < 0 ){
+		printf( "Unable to set latency timer! (Patient)\n" );
 	}	
 	else{
-		printf( "Bitmode successfully set.\n" );
+		printf( "Latency timer set. (Patient)\n" );
+	}
+
+	status = ftdi_set_bitmode ( ft_con_doctor, 0x00, BITMODE_MPSSE );
+	if( status < 0 ){
+		printf( "Bitmode set failed! (Doctor)\n" );
+	}	
+	else{
+		printf( "Bitmode successfully set. (Doctor)\n" );
+	}
+
+	status = ftdi_set_bitmode ( ft_con_patient, 0x00, BITMODE_MPSSE );
+	if( status < 0 ){
+		printf( "Bitmode set failed! (Patient)\n" );
+	}	
+	else{
+		printf( "Bitmode successfully set. (Patient)\n" );
 	}
 	
 	usleep(50*1000); //Sleep for 50 msek
@@ -125,7 +198,10 @@ int openDevice(void) {
 	msg[mp++] = FPC_ACBUS6_RESET;
 	msg[mp++] = FPC_ACBUS6_RESET;
 	
-	if(writeFTDI(msg, mp))
+	if(writeFTDI(msg, mp, ft_con_doctor))
+		return -1;
+
+	if(writeFTDI(msg, mp, ft_con_patient))
 		return -1;
 	
 	printf( "Open complete!\n" );
@@ -133,20 +209,30 @@ int openDevice(void) {
 }
 
 int closeDevice( void ){
-	if( ft_con != NULL ){
-		int status = ftdi_usb_close( ft_con );
+	if( ft_con_doctor != NULL ){
+		int status = ftdi_usb_close( ft_con_doctor );
 		if ( status < 0 ){
-			printf( "Close failed!" );
+			printf( "Closing doctor device failed!" );
 		}
 		else{
-			printf( "Device successfully closed" );
+			printf( "Doctor device successfully closed" );
+		}
+	}
+
+	if( ft_con_patient != NULL ){
+		int status = ftdi_usb_close( ft_con_patient );
+		if ( status < 0 ){
+			printf( "Closing patient device failed!" );
+		}
+		else{
+			printf( "Patient device successfully closed" );
 		}
 	}
 	return 0;
 }
 
 /* write command/data to FTDI device */
-int writeFTDI(unsigned char* data, int length) {
+int writeFTDI(unsigned char* data, int length, struct ftdi_context *ft_con) {
 	if( ft_con == NULL)
 		return -1;
 
@@ -161,23 +247,45 @@ int writeFTDI(unsigned char* data, int length) {
 	return 0;
 }
 
-int resetSensor() {
+int resetSensor( void ) {
 	unsigned char cmd[3];
 
 	cmd[0] = FPC_SET_HIGH_PINS;
 	cmd[1] = 0; // set reset low
 	cmd[2] = FPC_ACBUS6_RESET;
 	
-	if(writeFTDI(cmd, 3)){
-	    printf("Failed to reset sensor!");
+	if(writeFTDI(cmd, 3, ft_con_patient)){
+	    printf("Failed to reset patient sensor! (1)");
 		return -1;
 	}
 	
 	usleep(50*1000);
 	
 	cmd[1] = FPC_ACBUS6_RESET; // set reset high
-	if(writeFTDI(cmd, 3)){
-	    printf("Failed to reset sensor!");
+	if(writeFTDI(cmd, 3, ft_con_patient)){
+	    printf("Failed to reset patient sensor! (2)");
+		return -1;
+	}
+
+	//Reset of doctor sensor fails, returns 0 to avoid.
+	printf("Reset of doctor sensor fails, returns 0 before to avoid.\n");
+	return 0;
+
+
+	cmd[0] = FPC_SET_HIGH_PINS;
+	cmd[1] = 0; // set reset low
+	cmd[2] = FPC_ACBUS6_RESET;
+	
+	if(writeFTDI(cmd, 3, ft_con_doctor)){
+	    printf("Failed to reset doctor sensor! (1)");
+		return -1;
+	}
+
+	usleep(50*1000);
+	
+	cmd[1] = FPC_ACBUS6_RESET; // set reset high
+	if(writeFTDI(cmd, 3, ft_con_doctor)){
+	    printf("Failed to reset doctor sensor! (2)");
 		return -1;
 	}
 
@@ -187,7 +295,8 @@ int resetSensor() {
 }
 
 /* read back data from FTDI device*/
-int readFTDI(unsigned char* data, int length) {
+int readFTDI(unsigned char* data, int length, struct ftdi_context *ft_con) {
+
 	if( ft_con == NULL){
 	    printf("Failed to read data from device");
 		return -1;
@@ -208,8 +317,10 @@ int readFTDI(unsigned char* data, int length) {
 	return 0;
 }
 
-int captureImage(unsigned char adcref, unsigned char drivc, unsigned char sensemode, unsigned char* pdata) {
+int captureImage(bool ispatient, unsigned char adcref, unsigned char drivc, unsigned char sensemode, unsigned char* pdata) {
 	
+	struct ftdi_context *ft_con = ispatient ? ft_con_patient : ft_con_doctor;
+
 	if( ft_con == NULL)
 		return -1;
 
@@ -242,10 +353,10 @@ int captureImage(unsigned char adcref, unsigned char drivc, unsigned char sensem
 	cmdBuilder.addSetSS(1);
 	cmdBuilder.addSendImmmediate();
 
-	if(writeFTDI(cmd, cmdBuilder.getSize()))
+	if(writeFTDI(cmd, cmdBuilder.getSize(), ft_con))
 		return -1;
 
-	if(readFTDI(pdata, 30400))
+	if(readFTDI(pdata, 30400, ft_con))
 		return -1;
 
 	return 0;
